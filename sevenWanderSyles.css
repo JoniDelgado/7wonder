@@ -1,0 +1,12 @@
+.cardsDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.card {
+    width: 15%;
+    text-align: center;
+    border: 1px solid black;
+    cursor: pointer;
+}
