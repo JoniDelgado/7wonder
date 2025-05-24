@@ -1,7 +1,17 @@
 .cardsDisplay {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: .5rem;
+}
+
+.playerOnTurnContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.playerOnTurn {
+    color: red;
 }
 
 .card {
