@@ -14,23 +14,39 @@ class View {
     this.game.cards.forEach((card) => {
       const div = document.createElement("div");
       div.className = "card";
-      div.addEventListener("click", () => this.onClickCard(card));
+      div.classList.add(card.type);
       const name = document.createElement("p");
       name.textContent = card.name;
       const type = document.createElement("p");
       type.textContent = card.type;
       const points = document.createElement("p");
       points.textContent = card.points;
+
+      const takeDiv = document.createElement("div");
+      takeDiv.classList.add("take");
+      takeDiv.textContent = "V";
+      takeDiv.addEventListener("click", () => this.selectCard(card, "select"));
+
+      const discardDiv = document.createElement("div");
+      discardDiv.classList.add("discard");
+      discardDiv.textContent = "X";
+      discardDiv.addEventListener("click", () =>
+        this.selectCard(card, "discard")
+      );
+
+      div.appendChild(takeDiv);
+      div.appendChild(discardDiv);
+
       div.appendChild(name);
       div.appendChild(type);
-      div.appendChild(points);
+      if (card.points > 0) div.appendChild(points);
 
       this.cardsDisplay.appendChild(div);
     });
   }
 
-  onClickCard(card) {
-    this.game.onClickCard(card);
+  selectCard(card, action) {
+    this.game.selectCard(card, action);
     this.displayCards();
     this.showPlayerOnTurn();
   }

@@ -18,5 +18,52 @@
     width: 15%;
     text-align: center;
     border: 1px solid black;
+    position: relative;
+}
+
+.discard {
+    padding: .2rem;
+    background-color: black;
+    color: red;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     cursor: pointer;
+
+}
+
+.take {
+    padding: .2rem;
+    background-color: black;
+    color: green;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+
+}
+
+
+.cientifico {
+    background-color: green;
+}
+
+.materiales {
+    background-color: rgb(128, 64, 0);
+}
+
+.comercio {
+    background-color: yellow;
+}
+
+.civil {
+    background-color: skyblue;
+}
+
+.militar {
+    background-color: red;
+}
+
+.manufactura {
+    background-color: rgb(179, 179, 179);
 }
