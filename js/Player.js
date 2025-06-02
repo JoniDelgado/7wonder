@@ -17,7 +17,6 @@ class Player {
     this.addCardToHand(card);
     this.addResources(card);
     this.addPoints(card);
-    console.log(this);
   }
 
   checkEnoughResources(card) {
@@ -34,7 +33,7 @@ class Player {
   }
 
   addCardToHand(card) {
-    this.cards.push(card.id);
+    this.cards.push(card);
   }
 
   addResources(card) {
@@ -48,7 +47,13 @@ class Player {
   }
 
   discardCard() {
-    this.resource.oro += 3;
+    // Agregamos 3 monedas de oro mas 1 por cada carta de comercio.
+
+    const goldForDiscard = 3;
+    const commerceCards = this.cards.filter(
+      (card) => card.type === "comercio"
+    ).length;
+    this.resource.oro += goldForDiscard + commerceCards;
   }
 }
 

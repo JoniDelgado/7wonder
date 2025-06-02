@@ -7,7 +7,7 @@ class Game {
     this.players = [new Player(player1), new Player(player2)];
     this.actualTurn = 0;
     this.cards = [];
-    this.discardCars = [];
+    this.discardCards = [];
     this.shuffleCards(firstAgeCards);
   }
 
@@ -35,10 +35,9 @@ class Game {
 
   selectCard(objCard, action) {
     if (action === "discard") {
-      this.discardCars.push(objCard);
+      this.discardCards.push(objCard);
       this.cards = this.cards.filter((card) => card.id !== objCard.id);
       this.players[this.actualTurn].discardCard();
-      console.log(this.players[this.actualTurn]);
       this.changeTurn();
       return;
     }

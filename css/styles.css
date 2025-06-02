@@ -14,12 +14,54 @@
     color: red;
 }
 
-.card {
+/* Estilos Cartas sobre mesa */
+
+.cardContainer {
     width: 15%;
+    height: 200px;
     text-align: center;
     border: 1px solid black;
     position: relative;
 }
+
+.cardResources {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 5px;
+    height: 25%;
+}
+
+.iconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: #fff;
+    position: relative;
+}
+
+.iconContainer img {
+    max-width: 80%;
+    height: 80%;
+}
+
+.iconContainer p {
+    font-weight:900;
+    position: absolute;
+    top: 10%;
+    right: 110%;
+    transform: translate(0, -50%);
+    z-index: 10;
+}
+
+
+
+/* ------------------------------------ */
+
 
 .discard {
     padding: .2rem;

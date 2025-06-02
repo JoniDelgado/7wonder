@@ -8,7 +8,8 @@ const firstAgeCards = [
     effect: {
       resource: { piedra: 1 },
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -22,7 +23,8 @@ const firstAgeCards = [
     effect: {
       resource: { arcilla: 1 },
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -34,7 +36,8 @@ const firstAgeCards = [
     effect: {
       resource: { arcilla: 1 },
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -48,7 +51,8 @@ const firstAgeCards = [
     effect: {
       resource: { piedra: 1 },
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -62,7 +66,8 @@ const firstAgeCards = [
     effect: {
       resource: { madera: 1 },
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -74,7 +79,8 @@ const firstAgeCards = [
     effect: {
       resource: { madera: 1 },
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -88,7 +94,8 @@ const firstAgeCards = [
     effect: {
       resource: { papel: 1 },
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -102,7 +109,8 @@ const firstAgeCards = [
     effect: {
       resource: { cristal: 1 },
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -114,7 +122,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -126,7 +135,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -140,7 +150,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 0,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -154,7 +165,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 1,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -166,7 +178,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 1,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -180,7 +193,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 1,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -194,7 +208,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 1,
-      progress: 0,
+      progress: [],
+      commerce: [],
     },
   },
   {
@@ -208,7 +223,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 0,
-      progress: ["pluma"],
+      progress: ["escritura"],
+      commerce: [],
     },
   },
   {
@@ -222,7 +238,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 0,
-      progress: ["abaco"],
+      progress: ["teatro"],
+      commerce: [],
     },
   },
   {
@@ -236,7 +253,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 0,
-      progress: ["cuenco"],
+      progress: ["mortero"],
+      commerce: [],
     },
   },
   {
@@ -251,6 +269,7 @@ const firstAgeCards = [
       resource: {},
       military: 0,
       progress: ["rueda"],
+      commerce: [],
     },
   },
   {
@@ -264,8 +283,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 0,
-      progress: ["cuenco"],
-      comercio: ["madera"],
+      progress: [],
+      commerce: ["madera"],
     },
   },
   {
@@ -279,7 +298,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 0,
-      progress: ["arcilla"],
+      progress: [],
+      commerce: ["arcilla"],
     },
   },
   {
@@ -289,9 +309,10 @@ const firstAgeCards = [
     cost: {},
     points: 0,
     effect: {
-      resource: {},
+      resource: { oro: 4 },
       military: 0,
       progress: [],
+      commerce: [],
     },
   },
   {
@@ -305,7 +326,8 @@ const firstAgeCards = [
     effect: {
       resource: {},
       military: 0,
-      progress: ["piedra"],
+      progress: [],
+      commerce: ["piedra"],
     },
   },
 ];
