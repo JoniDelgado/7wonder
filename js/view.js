@@ -19,10 +19,10 @@ class View {
       const cardContainer = document.createElement("div");
       cardContainer.classList.add("cardContainer");
 
-      // Mostrar puntos que otorga la carta
       const cardResources = document.createElement("div");
       cardResources.classList.add(card.type, "cardResources");
 
+      // Mostrar puntos que otorga la carta
       if (card.points > 0) {
         const pointsContainer = document.createElement("div");
         pointsContainer.classList.add("iconContainer");
@@ -81,7 +81,6 @@ class View {
 
         //Mostrar recursos de cartas de ciencia
         else if (key === "progress" && value.length) {
-          console.log(value);
           const progressContainer = document.createElement("div");
           progressContainer.classList.add("iconContainer");
           const progressResource = document.createElement("img");
@@ -91,9 +90,41 @@ class View {
         }
       });
 
+      //Sección de costo de cada carta
+
       const cardCost = document.createElement("div");
+      cardCost.classList.add("cardCost");
+      const cost = Object.entries(card.cost);
+      if (cost.length) {
+        cost.forEach(([key, value]) => {
+          if (key === "oro") {
+            const costIconContainer = document.createElement("div");
+            costIconContainer.classList.add("iconContainer");
+            const costResource = document.createElement("img");
+            costResource.src = `./assets/icons/${key}.png`;
+            const constGoldValue = document.createElement("p");
+            constGoldValue.textContent = value;
+
+            costIconContainer.append(constGoldValue);
+            costIconContainer.append(costResource);
+            cardCost.append(costIconContainer);
+            return;
+          }
+          for (let i = 0; i < value; i++) {
+            const costIconContainer = document.createElement("div");
+            costIconContainer.classList.add("iconContainer");
+            const costResource = document.createElement("img");
+            costResource.src = `./assets/icons/${key}.png`;
+            costIconContainer.append(costResource);
+            cardCost.append(costIconContainer);
+          }
+        });
+      }
+
+      //Sección de nombre de carta
 
       const cardName = document.createElement("div");
+      cardName.classList.add("cardNameContainer");
       const name = document.createElement("p");
       name.textContent = card.name;
       cardName.append(name);
@@ -115,9 +146,10 @@ class View {
       );
 
       cardContainer.append(cardResources);
+      cardContainer.append(cardCost);
+      cardContainer.append(cardName);
       cardContainer.append(takeDiv);
       cardContainer.append(discardDiv);
-      cardContainer.append(cardName);
 
       containerFragment.append(cardContainer);
     });
