@@ -1,12 +1,11 @@
 import { firstAgeCards } from "./firstAgeCards.js";
 import Player from "./Player.js";
-import Cards from "./Cards.js";
 
 class Game {
   constructor(player1, player2) {
     this.players = [new Player(player1), new Player(player2)];
     this.actualTurn = 0;
-    this.cards = [];
+    this.cards = null;
     this.discardCards = [];
     this.shuffleCards(firstAgeCards);
   }
@@ -14,18 +13,12 @@ class Game {
   shuffleCards(arrCards) {
     const cardCopy = [...arrCards];
     for (let i = cardCopy.length - 1; i > 0; i--) {
-      const randInd = Math.floor(Math.random() * i);
-      [cardCopy[i], cardCopy[randInd]] = [cardCopy[randInd], cardCopy[i]];
+      let randInd = Math.floor(Math.random() * i);
+      let saveCardPosition = cardCopy[i];
+      cardCopy[i] = cardCopy[randInd];
+      cardCopy[randInd] = saveCardPosition;
     }
-    this.loadCards(cardCopy);
-  }
-
-  loadCards(cards) {
-    cards.forEach((card) => {
-      const { id, name, type, points, cost, effect } = card;
-      const newCard = new Cards(id, name, type, points, cost, effect);
-      this.cards.push(newCard);
-    });
+    this.cards = cardCopy;
   }
 
   changeTurn() {

@@ -1,5 +1,7 @@
+import Cards from "./Cards.js";
+
 const firstAgeCards = [
-  {
+  new Cards({
     id: "1",
     name: "cantera",
     type: "materiales",
@@ -11,8 +13,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "2",
     name: "explotación de arcilla",
     type: "materiales",
@@ -26,8 +28,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "3",
     name: "almacen de arcilla",
     type: "materiales",
@@ -39,8 +41,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "4",
     name: "almacen de piedra",
     type: "materiales",
@@ -54,8 +56,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "5",
     name: "campo maderero",
     type: "materiales",
@@ -69,8 +71,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "6",
     name: "almacen de madera",
     type: "materiales",
@@ -82,8 +84,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "7",
     name: "prensa",
     type: "manufactura",
@@ -97,8 +99,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "8",
     name: "cristalería",
     type: "manufactura",
@@ -112,8 +114,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "9",
     name: "teatro",
     type: "civil",
@@ -125,8 +127,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "10",
     name: "altar",
     type: "civil",
@@ -138,8 +140,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "11",
     name: "baños",
     type: "civil",
@@ -153,8 +155,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "12",
     name: "palenque",
     type: "militar",
@@ -168,8 +170,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "13",
     name: "torre de guardia",
     type: "militar",
@@ -181,8 +183,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "14",
     name: "establos",
     type: "militar",
@@ -196,8 +198,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "15",
     name: "guarnición",
     type: "militar",
@@ -211,8 +213,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "16",
     name: "scriptorium",
     type: "cientifico",
@@ -226,8 +228,8 @@ const firstAgeCards = [
       progress: ["escritura"],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "17",
     name: "taller",
     type: "cientifico",
@@ -241,8 +243,8 @@ const firstAgeCards = [
       progress: ["teatro"],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "18",
     name: "botica",
     type: "cientifico",
@@ -256,8 +258,8 @@ const firstAgeCards = [
       progress: ["mortero"],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "19",
     name: "farmacia",
     type: "cientifico",
@@ -271,8 +273,8 @@ const firstAgeCards = [
       progress: ["rueda"],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "20",
     name: "reserva de madera",
     type: "comercio",
@@ -286,8 +288,8 @@ const firstAgeCards = [
       progress: [],
       commerce: ["madera"],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "21",
     name: "reserva de arcilla",
     type: "comercio",
@@ -301,8 +303,8 @@ const firstAgeCards = [
       progress: [],
       commerce: ["arcilla"],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "22",
     name: "taberna",
     type: "comercio",
@@ -314,8 +316,8 @@ const firstAgeCards = [
       progress: [],
       commerce: [],
     },
-  },
-  {
+  }),
+  new Cards({
     id: "23",
     name: "reserva de piedra",
     type: "comercio",
@@ -329,7 +331,7 @@ const firstAgeCards = [
       progress: [],
       commerce: ["piedra"],
     },
-  },
+  }),
 ];
 
 export { firstAgeCards };
