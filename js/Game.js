@@ -1,4 +1,4 @@
-import { firstAgeCards } from "./firstAgeCards.js";
+import cards from "./firstAgeCards.js";
 import Player from "./Player.js";
 
 class Game {
@@ -6,8 +6,23 @@ class Game {
     this.players = [new Player(player1), new Player(player2)];
     this.actualTurn = 0;
     this.cards = null;
+    this.actualAge = null;
     this.discardCards = [];
-    this.shuffleCards(firstAgeCards);
+    this.loadNextAgeCards(1);
+  }
+
+  loadNextAgeCards(ageNum) {
+    const decksToLoad = {
+      1: cards.firstAgeCards,
+      2: cards.secondAgeCards,
+      3: cards.thirdAgeCards,
+    };
+
+    if (!this.actualAge) {
+      this.actualAge = ageNum;
+    } else this.actualAge += 1;
+
+    this.shuffleCards(decksToLoad[this.actualAge]);
   }
 
   shuffleCards(arrCards) {
@@ -18,12 +33,12 @@ class Game {
       cardCopy[i] = cardCopy[randInd];
       cardCopy[randInd] = saveCardPosition;
     }
-    this.cards = cardCopy;
-  }
 
-  changeTurn() {
-    if (this.actualTurn === this.players.length - 1) this.actualTurn = 0;
-    else this.actualTurn++;
+    cardCopy.forEach((card) => {
+      if (card.id % 2 === 0) card.cardSide = "shown";
+    });
+
+    this.cards = cardCopy;
   }
 
   selectCard(objCard, action) {
@@ -31,26 +46,33 @@ class Game {
       this.discardCards.push(objCard);
       this.cards = this.cards.filter((card) => card.id !== objCard.id);
       this.players[this.actualTurn].discardCard();
-      this.changeTurn();
-      return;
-    }
-    if (this.players[this.actualTurn].checkEnoughResources(objCard)) {
+    } else if (this.players[this.actualTurn].checkEnoughResources(objCard)) {
       this.players[this.actualTurn].selectCard(objCard);
       this.cards = this.cards.filter((card) => card.id !== objCard.id);
-      this.changeTurn();
-      this.endGame();
+    } else return;
+
+    this.changeTurn();
+    this.checkEndOfDeck();
+  }
+
+  changeTurn() {
+    if (this.actualTurn === this.players.length - 1) this.actualTurn = 0;
+    else this.actualTurn++;
+  }
+
+  checkEndOfDeck() {
+    const lastAge = 3;
+    if (this.cards.length === 0) {
+      if (this.actualAge === lastAge) {
+        this.endGame();
+        return;
+      }
+      this.loadNextAgeCards(this.actualAge);
     }
   }
 
   endGame() {
-    if (this.cards.length === 0) {
-      console.log(
-        `
-Los puntos del jugador ${this.players[0].name} son: ${this.players[0].points}
-Los puntos del jugador ${this.players[1].name} son: ${this.players[1].points}
-`
-      );
-    }
+    console.log("El juego se ha terminado");
   }
 }
 

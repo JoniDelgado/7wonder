@@ -5,6 +5,7 @@ class View {
     this.turnPlayer1 = document.querySelector(".turnPlayer1");
     this.turnPlayer2 = document.querySelector(".turnPlayer2");
     this.resourceContainer = document.querySelectorAll(".resourceContainer");
+    this.pointsText = document.querySelector(".points");
 
     this.displayCards();
     this.showPlayerOnTurn();
@@ -21,7 +22,7 @@ class View {
     icon.src = imgSrc;
 
     iconContainer.append(icon);
-    iconContainer.append(pointsIcon);
+    if (text) iconContainer.append(pointsIcon);
     container.append(iconContainer);
   }
 
@@ -34,126 +35,135 @@ class View {
       const cardContainer = document.createElement("div");
       cardContainer.classList.add("cardContainer");
 
-      const cardResources = document.createElement("div");
-      cardResources.classList.add(card.type, "cardResources");
+      if (card.cardSide === "shown") {
+        const cardResources = document.createElement("div");
+        cardResources.classList.add(card.type, "cardResources");
 
-      // Mostrar puntos que otorga la carta
-      if (card.points > 0) {
-        this.createIconBlock({
-          imgSrc: "./assets/icons/vp.png",
-          text: card["points"],
-          container: cardResources,
-        });
-      }
+        // Mostrar puntos que otorga la carta
+        if (card.points > 0) {
+          this.createIconBlock({
+            imgSrc: "./assets/icons/vp.png",
+            text: card["points"],
+            container: cardResources,
+          });
+        }
 
-      // Mostramos recursos que tiene la carta
-      Object.entries(card.effect).forEach(([key, value]) => {
-        if (key === "resource") {
-          Object.keys(value).forEach((res) => {
-            if (res === "oro") {
+        // Mostramos recursos que tiene la carta
+        Object.entries(card.effect).forEach(([key, value]) => {
+          if (key === "resource") {
+            Object.keys(value).forEach((res) => {
+              if (res === "oro") {
+                this.createIconBlock({
+                  imgSrc: `./assets/icons/${res}.png`,
+                  text: value[res],
+                  container: cardResources,
+                });
+              } else {
+                this.createIconBlock({
+                  imgSrc: `./assets/icons/${res}.png`,
+                  text: null,
+                  container: cardResources,
+                });
+              }
+            });
+
+            // Mostramos poder militar de la carta
+          } else if (key === "military" && value) {
+            for (let i = 0; i < value; i++) {
               this.createIconBlock({
-                imgSrc: `./assets/icons/${res}.png`,
-                text: value[res],
-                container: cardResources,
-              });
-            } else {
-              this.createIconBlock({
-                imgSrc: `./assets/icons/${res}.png`,
+                imgSrc: `./assets/icons/war.png`,
                 text: null,
                 container: cardResources,
               });
             }
-          });
 
-          // Mostramos poder militar de la carta
-        } else if (key === "military" && value) {
-          for (let i = 0; i < value; i++) {
+            //Mostrar recursos cartas de comercio
+          } else if (key === "commerce" && value.length) {
             this.createIconBlock({
-              imgSrc: `./assets/icons/war.png`,
-              text: null,
+              imgSrc: `./assets/icons/${value.join("")}.png`,
+              text: 1,
               container: cardResources,
             });
           }
 
-          //Mostrar recursos cartas de comercio
-        } else if (key === "commerce" && value.length) {
-          this.createIconBlock({
-            imgSrc: `./assets/icons/${value.join("")}.png`,
-            text: 1,
-            container: cardResources,
-          });
-        }
-
-        //Mostrar recursos de cartas de ciencia
-        else if (key === "progress" && value.length) {
-          this.createIconBlock({
-            imgSrc: `./assets/icons/${value.join("")}.png`,
-            text: null,
-            container: cardResources,
-          });
-        }
-      });
-
-      //Sección de costo de cada carta
-
-      const cardCost = document.createElement("div");
-      cardCost.classList.add("cardCost");
-      const cost = Object.entries(card.cost);
-      if (cost.length) {
-        cost.forEach(([key, value]) => {
-          if (key === "oro") {
+          //Mostrar recursos de cartas de ciencia
+          else if (key === "progress" && value.length) {
             this.createIconBlock({
-              imgSrc: `./assets/icons/${key}.png`,
-              text: value,
-              container: cardCost,
-            });
-            return;
-          }
-          for (let i = 0; i < value; i++) {
-            this.createIconBlock({
-              imgSrc: `./assets/icons/${key}.png`,
+              imgSrc: `./assets/icons/${value.join("")}.png`,
               text: null,
-              container: cardCost,
+              container: cardResources,
             });
           }
         });
+
+        //Sección de costo de cada carta
+
+        const cardCost = document.createElement("div");
+        cardCost.classList.add("cardCost");
+        const cost = Object.entries(card.cost);
+        if (cost.length) {
+          cost.forEach(([key, value]) => {
+            if (key === "oro") {
+              this.createIconBlock({
+                imgSrc: `./assets/icons/${key}.png`,
+                text: value,
+                container: cardCost,
+              });
+              return;
+            }
+            for (let i = 0; i < value; i++) {
+              this.createIconBlock({
+                imgSrc: `./assets/icons/${key}.png`,
+                text: null,
+                container: cardCost,
+              });
+            }
+          });
+        }
+
+        //Sección de nombre de carta
+
+        const cardName = document.createElement("div");
+        cardName.classList.add("cardNameContainer");
+        const name = document.createElement("p");
+        name.textContent = card.name;
+        cardName.append(name);
+
+        // --- Botón para seleccionar carta para jugador ---
+
+        const takeDiv = document.createElement("div");
+        takeDiv.classList.add("take");
+        takeDiv.textContent = "V";
+        takeDiv.addEventListener("click", () =>
+          this.selectCard(card, "select")
+        );
+
+        // --- Botón para descartar carta ---
+
+        const discardDiv = document.createElement("div");
+        discardDiv.classList.add("discard");
+        discardDiv.textContent = "X";
+        discardDiv.addEventListener("click", () =>
+          this.selectCard(card, "discard")
+        );
+
+        cardContainer.append(
+          cardResources,
+          cardCost,
+          cardName,
+          takeDiv,
+          discardDiv
+        );
+
+        containerFragment.append(cardContainer);
+      } else if (card.cardSide === "hidden") {
+        const backSideCardImg = document.createElement("img");
+        backSideCardImg.classList.add("backImg");
+        backSideCardImg.src = `./assets/images/backAge1.png`;
+        cardContainer.append(backSideCardImg);
+        containerFragment.append(cardContainer);
       }
-
-      //Sección de nombre de carta
-
-      const cardName = document.createElement("div");
-      cardName.classList.add("cardNameContainer");
-      const name = document.createElement("p");
-      name.textContent = card.name;
-      cardName.append(name);
-
-      // --- Botón para seleccionar carta para jugador ---
-
-      const takeDiv = document.createElement("div");
-      takeDiv.classList.add("take");
-      takeDiv.textContent = "V";
-      takeDiv.addEventListener("click", () => this.selectCard(card, "select"));
-
-      // --- Botón para descartar carta ---
-
-      const discardDiv = document.createElement("div");
-      discardDiv.classList.add("discard");
-      discardDiv.textContent = "X";
-      discardDiv.addEventListener("click", () =>
-        this.selectCard(card, "discard")
-      );
-
-      cardContainer.append(
-        cardResources,
-        cardCost,
-        cardName,
-        takeDiv,
-        discardDiv
-      );
-
-      containerFragment.append(cardContainer);
     });
-
     this.cardsDisplay.append(containerFragment);
   }
 
@@ -167,7 +177,6 @@ class View {
     this.resourceContainer.forEach((data, ind) => {
       data.textContent = "";
       const playerResource = this.game.players[ind].resource;
-
       for (let res in playerResource) {
         const resource = document.createElement("p");
         resource.textContent = `${res}: ${playerResource[res]}`;

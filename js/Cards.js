@@ -6,7 +6,10 @@ class Cards {
     this.cost = cost;
     this.points = points;
     this.effect = effect;
+    this.cardSide = "hidden";
   }
+
+  turnCard() {}
 }
 
 export default Cards;
