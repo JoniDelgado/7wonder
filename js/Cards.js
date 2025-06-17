@@ -6,7 +6,11 @@ class Cards {
     this.cost = cost;
     this.points = points;
     this.effect = effect;
-    this.cardSide = "hidden";
+    this.position = null;
+    this.available = false;
+    this.cardSide = null;
+    this.coveredBy = [];
+    this.pyramidRow = null;
   }
 
   turnCard() {}

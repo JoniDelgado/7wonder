@@ -132,6 +132,9 @@ class View {
         // --- Botón para seleccionar carta para jugador ---
 
         const takeDiv = document.createElement("div");
+        if (!card.available) {
+          takeDiv.classList.toggle("notVisible");
+        }
         takeDiv.classList.add("take");
         takeDiv.textContent = "V";
         takeDiv.addEventListener("click", () =>
@@ -141,6 +144,9 @@ class View {
         // --- Botón para descartar carta ---
 
         const discardDiv = document.createElement("div");
+        if (!card.available) {
+          discardDiv.classList.toggle("notVisible");
+        }
         discardDiv.classList.add("discard");
         discardDiv.textContent = "X";
         discardDiv.addEventListener("click", () =>
